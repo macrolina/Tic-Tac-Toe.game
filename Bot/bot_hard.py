@@ -32,13 +32,9 @@ class BotHardMode(Bot):
                 except:
                     pass
 
-                print("Second if works")
-
             if self.figure == "circle":
                 self.use_figure.rect.x = bot[0]
                 self.use_figure.rect.y = bot[1]
-
-                print("Circle works")
 
                 self.choose[index[0]][index[1]] = None
                 self.board[index[0]][index[1]] = "O"

@@ -1,5 +1,3 @@
-from pygame import display
-
 place_game = [[None for i in range(3)] for j in range(3)]
 choose = [[[100, 62], [300, 62], [500, 62]],
           [[100, 250], [300, 250], [500, 250]],
@@ -16,3 +14,4 @@ GREEN = (0, 255, 0)
 GREY = (120, 120, 120)
 
 running = True
+mode_choose=True

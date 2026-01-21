@@ -2,46 +2,50 @@ from random import choice
 from .bot_main import Bot
 
 class BotMediumMode(Bot):
-    def __init__(self, figure, board, use_figure, group):
-        super().__init__(figure, board, use_figure, group)
-        self.place_game = [[None for i in range(3)] for j in range(3)]
-        self.choose = [[[100, 62], [300, 62], [500, 62]],
-                       [[100, 250], [300, 250], [500, 250]],
-                       [[100, 438], [300, 438], [500, 438]]]
+    def __init__(self, figure, board, use_figure, group, choose, event):
+        super().__init__(figure, board, use_figure, group, choose, event)
 
     def bot_move(self):
-        bot = super().bot_choose()
-        bot_think = bot_think_move()
-        if bot_think != None:
+        bot = self.bot_choose()
+        bot_think = self.bot_think_move()
+
+        if bot_think != None and self.board[bot_think[0]][bot_think[1]]==None:
             try:
-                self.use_figure.rect.x = choose[bot_think[0]][bot_think[1]][0]
-                self.use_figure.rect.y = choose[bot_think[0]][bot_think[1]][1]
+                self.use_figure.rect.x = self.choose[bot_think[0]][bot_think[1]][0]
+                self.use_figure.rect.y = self.choose[bot_think[0]][bot_think[1]][1]
 
                 self.choose[bot_think[0]][bot_think[1]] = None
                 self.board[bot_think[0]][bot_think[1]] = "O"
 
-                self.group.add(circle)
+                self.group.add(self.use_figure)
             except Exception:
-                bot_move()
+                print("error")
 
-        elif bot == None:
-            bot_move()
+        elif bot != None:
 
-        elif bot_think == None and bot != None:
             index = []
-            for i in range(len(choose)):
+
+            for i in range(len(self.choose)):
+
                 if index != []:
                     break
+
                 try:
-                    index = [i, choose[i].index(bot)]
+
+                    index = [i, self.choose[i].index(bot)]
+
                 except:
+
                     pass
 
             if self.figure == "circle":
+
                 self.use_figure.rect.x = bot[0]
+
                 self.use_figure.rect.y = bot[1]
 
                 self.choose[index[0]][index[1]] = None
+
                 self.board[index[0]][index[1]] = "O"
 
                 self.group.add(self.use_figure)
