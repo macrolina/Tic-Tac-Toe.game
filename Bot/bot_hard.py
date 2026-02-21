@@ -68,7 +68,7 @@ class BotHardMode(Bot):
         if self.board[0][2] == self.board[1][1] == "O" and self.board[2][0] == None:
             return [2, 0]
         elif self.board[1][1] == self.board[2][0] == "O" and self.board[0][2] == None:
-            return [2, 0]
+            return [0, 2]
         elif self.board[0][2] == self.board[2][0] == "O" and self.board[1][1] == None:
             return [1, 1]
 
@@ -98,7 +98,7 @@ class BotHardMode(Bot):
         if self.board[0][2] == self.board[1][1] == "X" and self.board[2][0] == None:
             return [2, 0]
         elif self.board[1][1] == self.board[2][0] == "X" and self.board[0][2] == None:
-            return [2, 0]
+            return [0, 2]
         elif self.board[0][2] == self.board[2][0] == "X" and self.board[1][1] == None:
             return [1, 1]
 

@@ -6,6 +6,7 @@ from events import Event
 from menu.Easy_mode import EasyMode
 from menu.Medium_mode import MediumMode
 from menu.Hard_mode import HardMode
+from mode_choose import *
 from moves import move
 
 pg.init()
@@ -18,6 +19,7 @@ pg.display.flip()
 all_sprites = pg.sprite.Group()
 
 def draw():
+    screen.fill(WHITE)
     pg.draw.line(screen, BLACK, (283, 77), (283, 606), 2)
     pg.draw.line(screen, BLACK, (490, 77), (490, 606), 2)
     pg.draw.line(screen, BLACK, (112, 242), (654, 242), 2)
@@ -33,19 +35,25 @@ hard_button = HardMode(screen, all_sprites, draw)
 while running:
     if not mode_choose:
         for event in pg.event.get():
+
+            if draw_allowed:
+                draw()
+                draw_allowed=False
+
             if event.type == pg.QUIT:
                 pg.quit()
                 running = False
 
             elif event.type == pg.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pg.mouse.get_pos()
-                move(hardness, all_sprites, screen, draw)
+                secret=move(hardness, all_sprites, screen, draw)
+
+                if secret=='win':
+                    hardness, mode_choose, draw_allowed=-1, True, False
 
     else:
-        easy_button.create_button()
-        hard_button.create_button()
-        medium_button.create_button()
-        pg.display.update()
+        screen.fill(WHITE)
+        mode_choose_draw(easy_button, hard_button, medium_button)
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()
@@ -53,25 +61,7 @@ while running:
 
             elif event.type == pg.MOUSEBUTTONDOWN:
 
-                mouse_x, mouse_y = pg.mouse.get_pos()
+                mouse_x, mouse_y=pg.mouse.get_pos()
+                hardness, mode_choose, draw_allowed=mode_choose_make(mouse_x, mouse_y)
 
-                if 244 < mouse_x < 545 and 65 < mouse_y < 150:
-                    hardness=0
-                    mode_choose=False
-                    screen.fill(WHITE)
-                    pg.display.update()
-                    draw()
 
-                if 244 < mouse_x < 545 and 408 < mouse_y < 495:
-                    hardness=2
-                    mode_choose=False
-                    screen.fill(WHITE)
-                    pg.display.update()
-                    draw()
-
-                if 244 < mouse_x < 545 and 249 < mouse_y < 332:
-                    hardness=1
-                    mode_choose=False
-                    screen.fill(WHITE)
-                    pg.display.update()
-                    draw()

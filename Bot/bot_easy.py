@@ -8,19 +8,21 @@ class BotEasyMode(Bot):
     def bot_move(self):
         bot=super().bot_choose()
         index = []
-        for i in range(len(self.choose)):
-            if index != []:
-                break
-            try:
-                index = [i, self.choose[i].index(bot)]
-            except:
-                pass
 
-        if self.figure=="circle":
-            self.use_figure.rect.x = bot[0]
-            self.use_figure.rect.y = bot[1]
+        if bot!=None:
+            for i in range(len(self.choose)):
+                if index != []:
+                    break
+                try:
+                    index = [i, self.choose[i].index(bot)]
+                except:
+                    pass
 
-            self.choose[index[0]][index[1]] = None
-            self.board[index[0]][index[1]] = "O"
+            if self.figure=="circle":
+                self.use_figure.rect.x = bot[0]
+                self.use_figure.rect.y = bot[1]
 
-            self.group.add(self.use_figure)
+                self.choose[index[0]][index[1]] = None
+                self.board[index[0]][index[1]] = "O"
+
+                self.group.add(self.use_figure)

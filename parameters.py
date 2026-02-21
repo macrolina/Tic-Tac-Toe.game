@@ -15,3 +15,5 @@ GREY = (120, 120, 120)
 
 running = True
 mode_choose=True
+hardness=-1
+draw_allowed=False

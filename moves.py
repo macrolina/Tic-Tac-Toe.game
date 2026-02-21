@@ -7,6 +7,7 @@ from Bot.bot_hard import BotHardMode
 from events import Event
 from Event_check import game_check, Game
 from menu.again_button import Start_AgainButton
+from menu.choose_mode import ChooseModeAgain
 
 def move(hardness: int, all_sprites, screen, draw):
     global place_game
@@ -23,6 +24,7 @@ def move(hardness: int, all_sprites, screen, draw):
     hard=BotHardMode("circle", place_game, circle, all_sprites, choose, event=Event(screen))
 
     start_again = Start_AgainButton(screen, all_sprites, draw)
+    choose_mode_again=ChooseModeAgain(screen, all_sprites)
 
     if cross.player == True:
         if 120 < mouse_x < 281 and 80 < mouse_y < 240 and place_game[0][0] == None:
@@ -93,6 +95,7 @@ def move(hardness: int, all_sprites, screen, draw):
             screen.fill(WHITE)
             Game(place_game, action)
             start_again.create_button()
+            choose_mode_again.create_button()
             pg.display.update()
 
             if 280 <mouse_x <530 and 560 <mouse_y <620:
@@ -103,11 +106,22 @@ def move(hardness: int, all_sprites, screen, draw):
                 all_sprites.empty()
                 pg.display.update()
                 start_again.start_again()
+
+            elif 280 <mouse_x <530 and 460 <mouse_y <520:
+                place_game = [[None for i in range(3)] for j in range(3)]
+                choose = [[[100, 62], [300, 62], [500, 62]],
+                          [[100, 250], [300, 250], [500, 250]],
+                          [[100, 438], [300, 438], [500, 438]]]
+                all_sprites.empty()
+                pg.display.update()
+                return 'win'
+
 
         elif game_check(place_game)==None and place_game[0].count(None)==0 and place_game[1].count(None)==0 and place_game[2].count(None)==0:
             screen.fill(WHITE)
             action.equally()
             start_again.create_button()
+            choose_mode_again.create_button()
             pg.display.update()
 
             if 280 <mouse_x <530 and 560 <mouse_y <620:
@@ -118,6 +132,16 @@ def move(hardness: int, all_sprites, screen, draw):
                 all_sprites.empty()
                 pg.display.update()
                 start_again.start_again()
+
+            elif 280 <mouse_x <530 and 460 <mouse_y <520:
+                place_game = [[None for i in range(3)] for j in range(3)]
+                choose = [[[100, 62], [300, 62], [500, 62]],
+                          [[100, 250], [300, 250], [500, 250]],
+                          [[100, 438], [300, 438], [500, 438]]]
+                all_sprites.empty()
+                pg.display.update()
+                return 'win'
+
 
         else:
             all_sprites.update()
