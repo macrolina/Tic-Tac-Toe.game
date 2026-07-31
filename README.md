@@ -1,5 +1,11 @@
 # Tic-Tac-Toe.game
-Tic Tac Toe game on python
+> **Note:** This is one of my earliest learning projects created when I first started exploring programming and GUI/logic in Python. It is kept as a historical archive to track my learning progress.
 
-# Main file
-Main file is Tic_game.py
+ 🛠️ Tech Stack
+- Python 3.12
+- Pygame
+
+### 🚀 How to Run
+```bash
+python main.py
+```
